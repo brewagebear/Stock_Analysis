@@ -1,19 +1,36 @@
 # -*- coding: utf-8 -*-
 import requests
-from bs4 import BeautifulSoup
+import time
 import pandas as pd
+from selenium import webdriver
+from bs4 import BeautifulSoup
 from datetime import datetime
 
 
-RESULT_PATH = 'D:/Workspace/Python/Crawling/newscrawling_result/'
+RESULT_PATH = '/Users/sinsuung/Workspace/Python/Stock_Analysis/newscrawling_result/'
 now = datetime.now()  # 파일이름 현 시간으로 저장하기
+
+driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 
 
 def get_news(n_url):
     news_detail = []
 
-    breq = requests.get(n_url)
-    bsoup = BeautifulSoup(breq.content, 'html.parser')
+    dreq = driver.get(n_url)
+    time.sleep(1.3)
+    html = driver.execute_script('return document.body.innerHTML')
+    bsoup = BeautifulSoup(html, 'html.parser')
+
+    '''
+     [0] => title
+     [1] => pdate
+     [2] => btext
+     [3] => company
+     [4] => url
+     [5] => good
+     [6] => bad
+     [7] => neut
+    '''
 
     title = bsoup.select('h3#articleTitle')[0].text  # 대괄호는  h3#articleTitle 인 것중 첫번째 그룹만 가져오겠다.
     news_detail.append(title)
@@ -25,11 +42,25 @@ def get_news(n_url):
     btext = _text.replace("// flash 오류를 우회하기 위한 함수 추가 function _flash_removeCallback() {}", "")
     news_detail.append(btext.strip())
 
-    news_detail.append(n_url)
-
     pcompany = bsoup.select('#footer address')[0].a.get_text()
     news_detail.append(pcompany)
 
+    news_detail.append(n_url)
+
+    plike = bsoup.select('#spiLayer > div.u_likeit li.good span._count')[0].get_text()
+    pwarm = bsoup.select('#spiLayer > div.u_likeit li.warm span._count')[0].get_text()
+    pgood = int(plike) + int(pwarm)
+    news_detail.append(pgood)
+
+    psad = bsoup.select('#spiLayer > div.u_likeit li.sad span._count')[0].get_text()
+    pangry = bsoup.select('#spiLayer > div.u_likeit li.angry span._count')[0].get_text()
+    pbad = int(psad) + int(pangry)
+    news_detail.append(pbad)
+
+    pneut = bsoup.select('#spiLayer > div.u_likeit li.want span._count')[0].get_text()
+    pneut = int(pneut)
+    news_detail.append(pneut)
+    print(news_detail)
     return news_detail
 
 
@@ -38,7 +69,7 @@ def crawler(maxpage, query, s_date, e_date):
     e_to = e_date.replace(".", "")
     page = 1
     maxpage_t = (int(maxpage) - 1) * 10 + 1  # 11= 2페이지 21=3페이지 31=4페이지  ...81=9페이지 , 91=10페이지, 101=11페이지
-    f = open("D:/Workspace/Python/Crawling/newscrawling_result/contents_text.txt", 'w', encoding='utf-8')
+    f = open(RESULT_PATH + "contents_text(테스트).txt", 'w', encoding='utf-8')
 
     while page < maxpage_t:
 
@@ -61,8 +92,8 @@ def crawler(maxpage, query, s_date, e_date):
                     news_detail = get_news(urls["href"])
                     # pdate, pcompany, title, btext
                     f.write(
-                        "{}\t{}\t{}\t{}\t{}\n".format(news_detail[1], news_detail[4], news_detail[0], news_detail[2],
-                                                      news_detail[3]))  # new style
+                        "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(news_detail[1], news_detail[0], news_detail[2], news_detail[3],
+                                                      news_detail[4], news_detail[5], news_detail[6], news_detail[7]))  # new style
             except Exception as e:
                 print(e)
                 continue
@@ -72,8 +103,8 @@ def crawler(maxpage, query, s_date, e_date):
 
 
 def excel_make():
-    data = pd.read_csv(RESULT_PATH + 'contents_text.txt', sep='\t', header=None, error_bad_lines=False, lineterminator='\n')
-    data.columns = ['years', 'company', 'title', 'contents', 'link']
+    data = pd.read_csv(RESULT_PATH + 'contents_text(테스트).txt', sep='\t', header=None, error_bad_lines=False, lineterminator='\n')
+    data.columns = ['date', 'title', 'desc', 'company', 'url', 'good', 'bad', 'neut']
 
     xlsx_outputFileName = '%s-%s-%s  %s시 %s분 %s초 result.xlsx' % (
     now.year, now.month, now.day, now.hour, now.minute, now.second)
