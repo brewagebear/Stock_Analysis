@@ -6,7 +6,7 @@ import json
 from requests import get
 from datetime import datetime
 
-RESULT_PATH = '/Users/sinsuung/Workspace/Python/Stock_Analysis/stockcrawling_result'
+RESULT_PATH = '/Users/sinsuung/Workspace/Python/Stock_Analysis/crawling_result/'
 now = datetime.now()  # 파일이름 현 시간으로 저장하기
 
 headers = {
@@ -35,12 +35,22 @@ def download_stockList(url, file_name = None):
 
 
 def get_stockInfo(item_name):
-    url = "http://finance.daum.net/api/quote/{code}/days?symbolCode={code}".format(code=item_name)
-
-    print("요청 URL = {}".format(url))
+    if isinstance(item_name, int) == True:
+        if item_name == 1:
+            url = "https://finance.daum.net/api/market_index/days?market=KOSPI"
+        elif item_name == 2:
+            url = "https://finance.daum.net/api/market_index/days?market=KOSPI_200"
+        else :
+            url = "https://finance.daum.net/api/market_index/days?market=KOSDAQ"
+    else:
+        if item_name == 'WR.RUI@RTSI':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.RUI%40RTSI".format(code=item_name)
+        else:
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode={code}".format(code=item_name)
+        print("요청 URL = {}".format(url))
     return url
 
-def get_stockpriceInfo(item_list, url):
+def get_stockpriceInfo(url):
     df = pd.DataFrame()
     try:
         for page in range(1, 21):
@@ -64,13 +74,30 @@ def get_stockpriceInfo(item_list, url):
     print(df)
     return df
 
-def make_excel(df):
-    xlsx_outputFileName = '%s-%s-%s  %s시 %s분 %s초 result(다우지수).xlsx' % (
-        now.year, now.month, now.day, now.hour, now.minute, now.second)
+def make_excel(df, stock_name, index_flag):
+    if index_flag == 2:
+        stock_name = change_global_indexName(stock_name)
+    xlsx_outputFileName = '%s-%s-%s  %s시 %s분 %s초 result(%s).xlsx' % (
+        now.year, now.month, now.day, now.hour, now.minute, now.second, stock_name)
 
     df.to_excel(RESULT_PATH + xlsx_outputFileName, encoding='utf-8')
 
-def draw_graph(df, item_name):
+def change_global_indexName(item_name):
+    if item_name == 'CN000001':
+        item_name = '중국 - 상해종합'
+    elif item_name == 'JP.NI225':
+        item_name = '일본 - 니케이225'
+    elif item_name == 'US.DJI':
+        item_name = '미국 - 다우 산업'
+    elif item_name == 'US.COMP':
+        item_name = '미국 - 나스닥 종합'
+    else:
+        item_name = '러시아 - RTS'
+    return item_name
+
+def draw_graph(df, item_name, index_flag):
+    if index_flag == 2:
+        item_name = change_global_indexName(item_name)
     # 그래프를 생성. x축에는 날짜, y축에는 종가, 그래프 이름은 item_name에서 가져온다.
     trace = go.Scatter(x=df.date, y=df.tradePrice, name=item_name)
     # 위에 데이터 정보를 data라는 객체의 리스트로 담아준다.
@@ -109,13 +136,32 @@ def draw_graph(df, item_name):
 
 
 if __name__ == '__main__':
-    print("수집할 국제 증시명을 (다음 증권 기준) 입력해주세요 : ")
-    stock_name = input()
 
-    url = get_stockInfo(stock_name)
-    result = get_stockpriceInfo(stock_name, url)
-    make_excel(result)
-    draw_graph(result, stock_name)
+    print("수집할 국가를 선택해주세요 (다음 증권 기준) 1. 국내 / 2. 국외 : ")
+    index_flag = input()
+    index_flag = int(index_flag)
+
+    if int(index_flag) == 1 :
+        print("수집할 증시를 선택해주세요 (다음 증권 기준) 1. 코스피 / 2. 코스피200 / 3. 코스닥 : ")
+        korea_index_flag = input()
+        korea_index_flag = int(korea_index_flag)
+        url = get_stockInfo(korea_index_flag)
+        result = get_stockpriceInfo(url)
+
+        if korea_index_flag == 1:
+            stock_name = 'KOSPI'
+        elif korea_index_flag == 2:
+            stock_name = 'KOSPI_200'
+        else:
+            stock_name = 'KOSDAQ'
+    else:
+        print("수집할 국제 증시명을 (다음 증권 기준) 입력해주세요 : ")
+        stock_name = input()
+        url = get_stockInfo(stock_name)
+        result = get_stockpriceInfo(url)
+
+    make_excel(result, stock_name, index_flag)
+    draw_graph(result, stock_name, index_flag)
 
 
 
