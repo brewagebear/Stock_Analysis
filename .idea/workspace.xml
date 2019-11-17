@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="115f7a88-f347-4fb9-8eb7-1849536c8ae8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wooseok.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Crawling.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Crawling.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/2019-6-13  12시 52분 28초 result(stock).xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KOSAC.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/rating_test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/rating_train.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/삼성전자 주가정보.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/다우지수.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/다우지수.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/코스피200.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/코스피200.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wooseok.py" beforeDir="false" afterPath="$PROJECT_DIR$/wooseok.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
