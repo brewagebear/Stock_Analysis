@@ -33,13 +33,6 @@ def download_stockList(url, file_name = None):
         res = get(url)
         file.write(res.content)
 
-def excel_to_pandas():
-    # https://stackoverflow.com/a/24725123/7250379 로 해결 본래는 pd.read_excel 사용
-    stockinfo_df = pd.read_html("상장법인목록.xls", header=0)[0]
-    stockinfo_df.종목코드 = stockinfo_df.종목코드.map('{:06d}'.format)
-    stockinfo_df = stockinfo_df[['회사명', '종목코드']]
-    stockinfo_df = stockinfo_df.rename(columns={'회사명': 'name', '종목코드': 'code'})
-    return stockinfo_df
 
 def get_stockInfo(item_name):
     url = "http://finance.daum.net/api/quote/{code}/days?symbolCode={code}".format(code=item_name)
@@ -116,7 +109,7 @@ def draw_graph(df, item_name):
 
 
 if __name__ == '__main__':
-    print("수집할 종목명을 입력해주세요 : ")
+    print("수집할 국제 증시명을 (다음 증권 기준) 입력해주세요 : ")
     stock_name = input()
 
     url = get_stockInfo(stock_name)
