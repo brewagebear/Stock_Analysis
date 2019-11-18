@@ -8,10 +8,12 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 
-RESULT_PATH = '/Users/sinsuung/Workspace/Python/Stock_Analysis/newscrawling_result/'
+#RESULT_PATH = os.path.abspath("./newscrawling_result/")
+RESULT_PATH = 'C:/Users/Seok/Desktop/개발/Stock_Analysis/newscrawling_result/'
+print(r'C:/Users/Seok/Desktop/개발/Stock_Analysis/newscrawling_result/')
 now = datetime.now()  # 파일이름 현 시간으로 저장하기
 
-driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
+driver = webdriver.Chrome(executable_path='C:/Users/Seok/Desktop/개발/Stock_Analysis/chromedriver.exe')
 
 class Stack(list):
     def __init__(self):
