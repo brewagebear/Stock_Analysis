@@ -32,8 +32,7 @@ class Stack(list):
         if len(self.stack) == 0:
             return True
         return False
-
-
+      
 def get_news(n_url):
     news_detail = []
     stack = Stack()
@@ -76,21 +75,29 @@ def clean_text(dirty_str_list):
         dirty_str_list[idx] = text
     return dirty_str_list
 
+
 def news_regularization(bsoup, btext, n_url):
     news_detail = []
-    dirty_text  = []
 
-    pdate = bsoup.select('.t11')[0].get_text()[:11]
-    news_detail.append(pdate)
+    dreq = driver.get(n_url)
+    time.sleep(1.3)
+    html = driver.execute_script('return document.body.innerHTML')
+    bsoup = BeautifulSoup(html, 'html.parser')
+
+    '''
+     [0] => title
+     [1] => pdate
+     [2] => btext
+     [3] => company
+     [4] => url
+     [5] => good
+     [6] => bad
+     [7] => neut
+    '''
+
 
     title = bsoup.select('h3#articleTitle')[0].text  # 대괄호는  h3#articleTitle 인 것중 첫번째 그룹만 가져오겠다.
-    pcompany = bsoup.select('#footer address')[0].a.get_text()
-    plike = bsoup.select('#spiLayer > div.u_likeit li.good span._count')[0].get_text()
-    pwarm = bsoup.select('#spiLayer > div.u_likeit li.warm span._count')[0].get_text()
-
-    psad = bsoup.select('#spiLayer > div.u_likeit li.sad span._count')[0].get_text()
-    pangry = bsoup.select('#spiLayer > div.u_likeit li.angry span._count')[0].get_text()
-    pneut = bsoup.select('#spiLayer > div.u_likeit li.want span._count')[0].get_text()
+    news_detail.append(title)
 
     dirty_text.append(title)
     dirty_text.append(btext.strip())
