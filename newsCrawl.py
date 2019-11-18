@@ -8,12 +8,10 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 
-#RESULT_PATH = os.path.abspath("./newscrawling_result/")
-RESULT_PATH = 'C:/Users/Seok/Desktop/개발/Stock_Analysis/newscrawling_result/'
-print(r'C:/Users/Seok/Desktop/개발/Stock_Analysis/newscrawling_result/')
+RESULT_PATH = '/Users/sinsuung/Workspace/Python/Stock_Analysis/newscrawling_result/'
 now = datetime.now()  # 파일이름 현 시간으로 저장하기
 
-driver = webdriver.Chrome(executable_path='C:/Users/Seok/Desktop/개발/Stock_Analysis/chromedriver.exe')
+driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 
 class Stack(list):
     def __init__(self):
@@ -80,6 +78,7 @@ def clean_text(dirty_str_list):
 
 def news_regularization(bsoup, btext, n_url):
     news_detail = []
+    dirty_text = []
 
     dreq = driver.get(n_url)
     time.sleep(1.3)
@@ -97,9 +96,17 @@ def news_regularization(bsoup, btext, n_url):
      [7] => neut
     '''
 
+    pdate = bsoup.select('.t11')[0].get_text()[:11]
+    news_detail.append(pdate)
 
     title = bsoup.select('h3#articleTitle')[0].text  # 대괄호는  h3#articleTitle 인 것중 첫번째 그룹만 가져오겠다.
-    news_detail.append(title)
+    pcompany = bsoup.select('#footer address')[0].a.get_text()
+    plike = bsoup.select('#spiLayer > div.u_likeit li.good span._count')[0].get_text()
+    pwarm = bsoup.select('#spiLayer > div.u_likeit li.warm span._count')[0].get_text()
+
+    psad = bsoup.select('#spiLayer > div.u_likeit li.sad span._count')[0].get_text()
+    pangry = bsoup.select('#spiLayer > div.u_likeit li.angry span._count')[0].get_text()
+    pneut = bsoup.select('#spiLayer > div.u_likeit li.want span._count')[0].get_text()
 
     dirty_text.append(title)
     dirty_text.append(btext.strip())
@@ -164,10 +171,10 @@ def crawler(maxpage, query, s_date, e_date):
 
 
 def excel_make():
-    data = pd.read_csv(RESULT_PATH + 'contents_text(러시아).txt', sep='\t', header=None, error_bad_lines=False, lineterminator='\n')
+    data = pd.read_csv(RESULT_PATH + 'contents_text(미국).txt', sep='\t', header=None, error_bad_lines=False, lineterminator='\n')
     data.columns = ['date', 'title', 'desc', 'company', 'url', 'good', 'bad', 'neut']
 
-    xlsx_outputFileName = '%s-%s-%s  %s시 %s분 %s초 result.xlsx' % (
+    xlsx_outputFileName = '%s-%s-%s  %s시 %s분 %s초 result(미국).xlsx' % (
     now.year, now.month, now.day, now.hour, now.minute, now.second)
     # xlsx_name = 'result' + '.xlsx'
 
@@ -176,11 +183,11 @@ def excel_make():
 
 
 def main():
-    maxpage = input("최대 출력할 페이지수 입력하시오: ")
-    query = input("검색어 입력: ")
-    s_date = input("시작날짜 입력(2019.01.01):")  # 2019.01.01
-    e_date = input("끝날짜 입력(2019.04.28):")  # 2019.04.28
-    crawler(maxpage, query, s_date, e_date)  # 검색된 네이버뉴스의 기사내용을 크롤링합니다.
+   # maxpage = input("최대 출력할 페이지수 입력하시오: ")
+   # query = input("검색어 입력: ")
+   # s_date = input("시작날짜 입력(2019.01.01):")  # 2019.01.01
+   # e_date = input("끝날짜 입력(2019.04.28):")  # 2019.04.28
+   # crawler(maxpage, query, s_date, e_date)  # 검색된 네이버뉴스의 기사내용을 크롤링합니다.
     excel_make()
 
 main()
