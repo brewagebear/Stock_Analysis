@@ -31,8 +31,7 @@ class Stack(list):
         if len(self.stack) == 0:
             return True
         return False
-
-
+      
 def get_news(n_url):
     news_detail = []
     stack = Stack()
@@ -69,8 +68,26 @@ def get_news(n_url):
             news_detail = news_regularization(bsoup, btext, n_url)
     return news_detail
 
+
 def news_regularization(bsoup, btext, n_url):
     news_detail = []
+
+    dreq = driver.get(n_url)
+    time.sleep(1.3)
+    html = driver.execute_script('return document.body.innerHTML')
+    bsoup = BeautifulSoup(html, 'html.parser')
+
+    '''
+     [0] => title
+     [1] => pdate
+     [2] => btext
+     [3] => company
+     [4] => url
+     [5] => good
+     [6] => bad
+     [7] => neut
+    '''
+
 
     title = bsoup.select('h3#articleTitle')[0].text  # 대괄호는  h3#articleTitle 인 것중 첫번째 그룹만 가져오겠다.
     news_detail.append(title)
@@ -94,6 +111,13 @@ def news_regularization(bsoup, btext, n_url):
     pangry = bsoup.select('#spiLayer > div.u_likeit li.angry span._count')[0].get_text()
     pbad = int(psad) + int(pangry)
     news_detail.append(pbad)
+
+    pneut = bsoup.select('#spiLayer > div.u_likeit li.want span._count')[0].get_text()
+    pneut = int(pneut)
+    news_detail.append(pneut)
+    print(news_detail)
+    return news_detail
+
 
     pneut = bsoup.select('#spiLayer > div.u_likeit li.want span._count')[0].get_text()
     pneut = int(pneut)
