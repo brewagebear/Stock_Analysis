@@ -12,8 +12,64 @@ now = datetime.now()  # 파일이름 현 시간으로 저장하기
 
 driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 
+class Stack(list):
+    def __init__(self):
+        self.stack = []
 
+    def push(self, data):
+        self.stack.append(data)
+
+    def pop(self):
+        if self.is_empty():
+            return -1
+        return self.stack.pop()
+
+    def peek(self):
+        return self.stack[-1]
+
+    def is_empty(self):
+        if len(self.stack) == 0:
+            return True
+        return False
+      
 def get_news(n_url):
+    news_detail = []
+    stack = Stack()
+
+    dreq = driver.get(n_url)
+    time.sleep(0.8)
+    html = driver.execute_script('return document.body.innerHTML')
+    bsoup = BeautifulSoup(html, 'html.parser')
+
+    '''
+     [0] => title
+     [1] => pdate
+     [2] => btext
+     [3] => company
+     [4] => url
+     [5] => good
+     [6] => bad
+     [7] => neut
+    '''
+
+    _text = bsoup.select('#articleBodyContents')[0].get_text().replace('\n', " ")
+    btext = _text.replace("// flash 오류를 우회하기 위한 함수 추가 function _flash_removeCallback() {}", "")
+    news_detail.append(btext.strip())
+
+    if stack.is_empty():
+        stack.append(btext)
+        news_detail = news_regularization(bsoup, btext, n_url)
+    else:
+        if stack[0] == btext:
+            stack.pop()
+            return
+        else:
+            stack.append(btext)
+            news_detail = news_regularization(bsoup, btext, n_url)
+    return news_detail
+
+
+def news_regularization(bsoup, btext, n_url):
     news_detail = []
 
     dreq = driver.get(n_url)
@@ -32,14 +88,13 @@ def get_news(n_url):
      [7] => neut
     '''
 
+
     title = bsoup.select('h3#articleTitle')[0].text  # 대괄호는  h3#articleTitle 인 것중 첫번째 그룹만 가져오겠다.
     news_detail.append(title)
 
     pdate = bsoup.select('.t11')[0].get_text()[:11]
     news_detail.append(pdate)
 
-    _text = bsoup.select('#articleBodyContents')[0].get_text().replace('\n', " ")
-    btext = _text.replace("// flash 오류를 우회하기 위한 함수 추가 function _flash_removeCallback() {}", "")
     news_detail.append(btext.strip())
 
     pcompany = bsoup.select('#footer address')[0].a.get_text()
@@ -63,6 +118,13 @@ def get_news(n_url):
     print(news_detail)
     return news_detail
 
+
+    pneut = bsoup.select('#spiLayer > div.u_likeit li.want span._count')[0].get_text()
+    pneut = int(pneut)
+    news_detail.append(pneut)
+
+    print(news_detail)
+    return news_detail
 
 def crawler(maxpage, query, s_date, e_date):
     s_from = s_date.replace(".", "")
@@ -112,6 +174,7 @@ def excel_make():
 
 
     data.to_excel(RESULT_PATH + xlsx_outputFileName, encoding='utf-8')
+
 
 def main():
     maxpage = input("최대 출력할 페이지수 입력하시오: ")
