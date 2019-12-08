@@ -14,8 +14,9 @@ def dataRef(dataSet): #불러온 데이터중 필요한 데이터만 추출하�
     k = 0;
     for i in dataSet:
         if(k==0): #첫데이터 추가(무조건 코스피200)
-            totalData["KOSPI200_tradePrice"] = i["tradePrice"] #앞""안에 들어가는 값은 우리가 지정할 컬럼명 뒤""안에 들어가는 값은 엑셀에서의 컬럼값
+            totalData["KOSPI200_tradePrice"] = i["tradePrice"][7:30] #앞""안에 들어가는 값은 우리가 지정할 컬럼명 뒤""안에 들어가는 값은 엑셀에서의 컬럼값 (엑셀 9행부터 32행까지 추출)
             k = k+1
+            print(totalData)
         elif (i.shape[1]==10): #국내 지수(컬럼수가 10개)
             totalData["tradePrice"] = i["tradePrice"]
             totalData["changePrice"] = i["changePrice"]
@@ -52,7 +53,7 @@ def visualizationResult(result):
 def main():
     # 엑셀에서 데이터 추출 [코스피200과 원하는 데이터 하나빼고 모두 주석처리]
     dataSet = []
-    # dataSet.append(dataread('코스피200'))
+    dataSet.append(dataread('코스피200'))
     # dataSet.append(dataread('코스피'))
     # dataSet.append(dataread('코스닥'))
     # dataSet.append(dataread('다우지수'))

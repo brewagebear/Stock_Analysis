@@ -2,35 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="115f7a88-f347-4fb9-8eb7-1849536c8ae8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/나스닥.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/니케이225.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/다우지수.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/러시아RTS.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/상해종합.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/코스닥.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/코스피.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/코스피200.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wooseok.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/DJI.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/KOSDAQ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/KOSPI.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/N225.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/Nasdaq.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/러시아RTS.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/상해종합SSEC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Crawling.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Crawling.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newsCrawl_for_win.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newscrawling_result/contents_text(북한).txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KOSAC.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/이전데이터/KOSAC.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/rating_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/이전데이터/rating_test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/rating_train.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/이전데이터/rating_train.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/삼성전자 주가정보.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/이전데이터/삼성전자 주가정보.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/이전데이터/2019-6-13  12시 52분 28초 result(stock).xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/이전데이터/2019-6-13  12시 52분 28초 result(stock).xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/newsCrawl.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsCrawl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/references/2019-6-13  12시 52분 28초 result(stock).xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/references/2019-6-13  12시 52분 28초 result(stock).xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wooseok.py" beforeDir="false" afterPath="$PROJECT_DIR$/wooseok.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/분석시나리오.ppt" beforeDir="false" afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/분석시나리오.ppt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,29 +86,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.newsCrawl">
-    <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Crawling" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GUI.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.wooseok">
     <configuration name="dataread" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Crawling" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -153,28 +108,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="db" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Crawling" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/db.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="newsCrawl" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Crawling" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -188,6 +121,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/newsCrawl.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="newsCrawl_for_win" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Crawling" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/newsCrawl_for_win.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -218,20 +172,41 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="wooseok" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Crawling" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wooseok.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.GUI" />
-      <item itemvalue="Python.db" />
       <item itemvalue="Python.stock" />
       <item itemvalue="Python.dataread" />
       <item itemvalue="Python.newsCrawl" />
+      <item itemvalue="Python.newsCrawl_for_win" />
+      <item itemvalue="Python.wooseok" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.wooseok" />
+        <item itemvalue="Python.newsCrawl_for_win" />
         <item itemvalue="Python.newsCrawl" />
         <item itemvalue="Python.dataread" />
         <item itemvalue="Python.stock" />
-        <item itemvalue="Python.db" />
-        <item itemvalue="Python.GUI" />
       </list>
     </recent_temporary>
   </component>
