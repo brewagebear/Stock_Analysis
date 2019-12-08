@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import plotly.offline as offline
 import plotly.graph_objs as go
@@ -6,7 +7,7 @@ import json
 from requests import get
 from datetime import datetime
 
-RESULT_PATH = '/Users/sinsuung/Workspace/Python/Stock_Analysis/crawling_result/'
+RESULT_PATH = '/Users/dailyworker/workspace/python/Stock_Analysis/stockcrawling_result/'
 now = datetime.now()  # 파일이름 현 시간으로 저장하기
 
 headers = {
@@ -53,7 +54,7 @@ def get_stockInfo(item_name):
 def get_stockpriceInfo(url):
     df = pd.DataFrame()
     try:
-        for page in range(1, 21):
+        for page in range(1, 172):
             pg_url = '{url}&page={page}&perPage=10&pagination=true'.format(url=url, page=page)
             print(pg_url)
             res = get(pg_url, headers=headers)
@@ -77,10 +78,10 @@ def get_stockpriceInfo(url):
 def make_excel(df, stock_name, index_flag):
     if index_flag == 2:
         stock_name = change_global_indexName(stock_name)
-    xlsx_outputFileName = '%s-%s-%s  %s시 %s분 %s초 result(%s).xlsx' % (
+    xlsx_outputFileName = '%s-%s-%s %s시 %s분 %s초 result(%s).xlsx' % (
         now.year, now.month, now.day, now.hour, now.minute, now.second, stock_name)
 
-    df.to_excel(RESULT_PATH + xlsx_outputFileName, encoding='utf-8')
+    df.to_excel(os.path.join(RESULT_PATH, xlsx_outputFileName), encoding='utf-8')
 
 def change_global_indexName(item_name):
     if item_name == 'CN000001':
