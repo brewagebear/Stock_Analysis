@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import plotly.offline as offline
 import plotly.graph_objs as go
@@ -6,7 +7,7 @@ import json
 from requests import get
 from datetime import datetime
 
-RESULT_PATH = '/Users/sinsuung/Workspace/Python/Stock_Analysis/crawling_result/'
+RESULT_PATH = 'C:/Users/Seok/Desktop/개발/Stock_Analysis/stockcrawling_result/new/'
 now = datetime.now()  # 파일이름 현 시간으로 저장하기
 
 headers = {
@@ -45,6 +46,42 @@ def get_stockInfo(item_name):
     else:
         if item_name == 'WR.RUI@RTSI':
             url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.RUI%40RTSI".format(code=item_name)
+        elif item_name == 'WR.HUI%40BUX' :
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.HUI%40BUX".format(code=item_name)
+        elif item_name == 'FR.CAC40' :
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=FR.CAC40".format(code=item_name)
+        elif item_name == 'JP.T0000' :
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=JP.T0000".format(code=item_name)
+        elif item_name == 'WR.IDI%40JKSE' :
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.IDI%40JKSE".format(code=item_name)
+        elif item_name == 'WR.INI%40BSE30' :
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.INI%40BSE30".format(code=item_name)
+        elif item_name == 'WR.ITI%40FTSEMIB':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.ITI%40FTSEMIB".format(code=item_name)
+        elif item_name == 'GB.FTSE100':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=GB.FTSE100".format(code=item_name)
+        elif item_name == 'WR.ARI%40MERV':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.ARI%40MERV".format(code=item_name)
+        elif item_name == 'WR.SGI%40STI':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.SGI%40STI".format(code=item_name)
+        elif item_name == 'WR.BRI%40BVSP':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.BRI%40BVSP".format(code=item_name)
+        elif item_name == 'WR.VNI%40VHIN':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.VNI%40VHIN".format(code=item_name)
+        elif item_name == 'US.SOX':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=US.SOX".format(code=item_name)
+        elif item_name == 'US.DJT':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=US.DJT".format(code=item_name)
+        elif item_name == 'US.SP500':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=US.SP500".format(code=item_name)
+        elif item_name == 'US.NDX':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=US.NDX".format(code=item_name)
+        elif item_name == 'WR.MYI%40KLSE':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=WR.MYI%40KLSE".format(code=item_name)
+        elif item_name == 'DE.DAX30':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=DE.DAX30".format(code=item_name)
+        elif item_name == 'TW.TAIEX':
+            url = "http://finance.daum.net/api/quote/{code}/days?symbolCode=TW.TAIEX".format(code=item_name)
         else:
             url = "http://finance.daum.net/api/quote/{code}/days?symbolCode={code}".format(code=item_name)
         print("요청 URL = {}".format(url))
@@ -53,7 +90,7 @@ def get_stockInfo(item_name):
 def get_stockpriceInfo(url):
     df = pd.DataFrame()
     try:
-        for page in range(1, 21):
+        for page in range(1, 172):
             pg_url = '{url}&page={page}&perPage=10&pagination=true'.format(url=url, page=page)
             print(pg_url)
             res = get(pg_url, headers=headers)
@@ -77,10 +114,10 @@ def get_stockpriceInfo(url):
 def make_excel(df, stock_name, index_flag):
     if index_flag == 2:
         stock_name = change_global_indexName(stock_name)
-    xlsx_outputFileName = '%s-%s-%s  %s시 %s분 %s초 result(%s).xlsx' % (
+    xlsx_outputFileName = '%s-%s-%s %s시 %s분 %s초 result(%s).xlsx' % (
         now.year, now.month, now.day, now.hour, now.minute, now.second, stock_name)
 
-    df.to_excel(RESULT_PATH + xlsx_outputFileName, encoding='utf-8')
+    df.to_excel(os.path.join(RESULT_PATH, xlsx_outputFileName), encoding='utf-8')
 
 def change_global_indexName(item_name):
     if item_name == 'CN000001':
@@ -91,6 +128,52 @@ def change_global_indexName(item_name):
         item_name = '미국 - 다우 산업'
     elif item_name == 'US.COMP':
         item_name = '미국 - 나스닥 종합'
+    elif item_name == 'WR.HUI%40BUX':
+        item_name = '헝가리 - 부다페스트 SE'
+    elif item_name == 'HKHSCE':
+        item_name = '홍콩 - H지수'
+    elif item_name == 'HKHSCC':
+        item_name = '홍콩 - 항셍 차이나대기업(R)'
+    elif item_name == 'FR.CAC40':
+        item_name = '프랑스 - CAC'
+    elif item_name == 'CN000002':
+        item_name = '중국 - 상해A'
+    elif item_name == 'CN000300':
+        item_name = '중국 - CSI 300'
+    elif item_name == 'CN000003':
+        item_name = '중국 - 상해B'
+    elif item_name == 'JP.T0000':
+        item_name = '일본 - TOPIX'
+    elif item_name == 'WR.IDI%40JKSE':
+        item_name = '인도네시아 - IDX 종합'
+    elif item_name == 'WR.INI%40BSE30':
+        item_name = '인도 - SENSEX'
+    elif item_name == 'WR.ITI%40FTSEMIB':
+        item_name = '이탈리아 FTSE MIB'
+    elif item_name == 'GB.FTSE100':
+        item_name = '영국 FTSE 100'
+    elif item_name == 'WR.ARI%40MERV':
+        item_name = '아르헨티나 MERVAL'
+    elif item_name == 'WR.SGI%40STI':
+        item_name = '싱가포르 ST'
+    elif item_name == 'WR.BRI%40BVSP':
+        item_name = '브라질 BOVESPA'
+    elif item_name == 'WR.VNI%40VHIN':
+        item_name = '베트남 하노이 HNX'
+    elif item_name == 'US.SOX':
+        item_name = '미국 필라데피아 반도체'
+    elif item_name == 'US.DJT':
+        item_name = '미국 다우 운송'
+    elif item_name == 'US.SP500':
+        item_name = '미국 S&P 500'
+    elif item_name == 'US.NDX':
+        item_name = '미국 나스닥 100'
+    elif item_name == 'WR.MYI%40KLSE':
+        item_name = '말레이시아 KLCL'
+    elif item_name == 'DE.DAX30':
+        item_name = '독일 DAX'
+    elif item_name == 'TW.TAIEX':
+        item_name = '대만 가권'
     else:
         item_name = '러시아 - RTS'
     return item_name
@@ -137,31 +220,35 @@ def draw_graph(df, item_name, index_flag):
 
 if __name__ == '__main__':
 
-    print("수집할 국가를 선택해주세요 (다음 증권 기준) 1. 국내 / 2. 국외 : ")
-    index_flag = input()
-    index_flag = int(index_flag)
+    while(1) :
 
-    if int(index_flag) == 1 :
-        print("수집할 증시를 선택해주세요 (다음 증권 기준) 1. 코스피 / 2. 코스피200 / 3. 코스닥 : ")
-        korea_index_flag = input()
-        korea_index_flag = int(korea_index_flag)
-        url = get_stockInfo(korea_index_flag)
-        result = get_stockpriceInfo(url)
+        print("수집할 국가를 선택해주세요 (다음 증권 기준) 1. 국내 / 2. 국외 : ")
+        index_flag = input()
+        index_flag = int(index_flag)
 
-        if korea_index_flag == 1:
-            stock_name = 'KOSPI'
-        elif korea_index_flag == 2:
-            stock_name = 'KOSPI_200'
+        if int(index_flag) == 1 :
+            print("수집할 증시를 선택해주세요 (다음 증권 기준) 1. 코스피 / 2. 코스피200 / 3. 코스닥 : ")
+            korea_index_flag = input()
+            korea_index_flag = int(korea_index_flag)
+            url = get_stockInfo(korea_index_flag)
+            result = get_stockpriceInfo(url)
+
+            if korea_index_flag == 1:
+                stock_name = 'KOSPI'
+            elif korea_index_flag == 2:
+                stock_name = 'KOSPI_200'
+            else:
+                stock_name = 'KOSDAQ'
         else:
-            stock_name = 'KOSDAQ'
-    else:
-        print("수집할 국제 증시명을 (다음 증권 기준) 입력해주세요 : ")
-        stock_name = input()
-        url = get_stockInfo(stock_name)
-        result = get_stockpriceInfo(url)
+            print("수집할 국제 증시명을 (다음 증권 기준) 입력해주세요 : ")
+            stock_name = input()
+            url = get_stockInfo(stock_name)
+            result = get_stockpriceInfo(url)
 
-    make_excel(result, stock_name, index_flag)
-    draw_graph(result, stock_name, index_flag)
+        make_excel(result, stock_name, index_flag)
+        draw_graph(result, stock_name, index_flag)
+
+
 
 
 

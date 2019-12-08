@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="115f7a88-f347-4fb9-8eb7-1849536c8ae8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/newsCrawl_for_win.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/newscrawling_result/contents_text(북한).txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/newsCrawl.py" beforeDir="false" afterPath="$PROJECT_DIR$/newsCrawl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp-plot.html" beforeDir="false" afterPath="$PROJECT_DIR$/temp-plot.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wooseok.py" beforeDir="false" afterPath="$PROJECT_DIR$/wooseok.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/분석시나리오.ppt" beforeDir="false" afterPath="$PROJECT_DIR$/과제 제출용 파일(WOOSEOK)/분석시나리오.ppt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/world_index.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +86,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.wooseok">
-    <configuration name="dataread" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="ArticleCrawler" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Crawling" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -95,11 +94,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Crawler" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Seok\Desktop\개발\Stock_Analysis\wooseok.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Crawler/ArticleCrawler.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,28 +149,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="stock" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Crawling" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stock.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="wooseok" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Crawling" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -193,20 +170,41 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="world_index" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Crawling" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/world_index.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.stock" />
-      <item itemvalue="Python.dataread" />
       <item itemvalue="Python.newsCrawl" />
       <item itemvalue="Python.newsCrawl_for_win" />
       <item itemvalue="Python.wooseok" />
+      <item itemvalue="Python.ArticleCrawler" />
+      <item itemvalue="Python.world_index" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.wooseok" />
+        <item itemvalue="Python.world_index" />
+        <item itemvalue="Python.ArticleCrawler" />
         <item itemvalue="Python.newsCrawl_for_win" />
         <item itemvalue="Python.newsCrawl" />
-        <item itemvalue="Python.dataread" />
-        <item itemvalue="Python.stock" />
       </list>
     </recent_temporary>
   </component>
